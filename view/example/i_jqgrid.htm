@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/layout_iframe.css" rel="stylesheet" type="text/css" />
+<link href="/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+<link href="/css/jqueryUI/jquery-ui-1.8.10.custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ebmenu.js"></script>
+<script type="text/javascript" src="/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="/js/jquery.jqgrid.min.js"></script>
+<SCRIPT type="text/javascript">
+$(document).ready(function () {
+
+var mydata = [
+		{id:"1",invdate:"2010-05-24",name:"test",note:"note",tax:"10.00",total:"2111.00"} ,
+		{id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
+		{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
+		{id:"4",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
+		{id:"5",invdate:"2007-10-05",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
+		{id:"6",invdate:"2007-09-06",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
+		{id:"7",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
+		{id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"21.00",total:"320.00"},
+		{id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"10",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"11",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+		{id:"12",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"13",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"14",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+		{id:"15",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"16",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"17",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+		{id:"18",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"19",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"20",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"21",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+		{id:"22",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"23",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"24",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+		{id:"25",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+		{id:"26",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+		{id:"27",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"}
+	];
+jQuery("#list47").jqGrid({
+	data: mydata,
+	datatype: "local",
+	height: 350,
+	rowNum: 15,
+	rowList: [15,30,50],
+   	colNames:['编号','日期', '客户', '数量','税额','总数','注释'],
+   	colModel:[
+   		{name:'id',index:'id', width:60, sorttype:"int"},
+   		{name:'invdate',index:'invdate', width:90, sorttype:"date", formatter:"date"},
+   		{name:'name',index:'name', width:100},
+   		{name:'amount',index:'amount', width:80, align:"right",sorttype:"float", formatter:"number"},
+   		{name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},		
+   		{name:'total',index:'total', width:80,align:"right",sorttype:"float"},		
+   		{name:'note',index:'note', width:450, sortable:false}		
+   	],
+   	pager: "#plist47",
+   	viewrecords: true,
+   	caption: "表格名称"
+});
+});
+</SCRIPT>
+<title>东信北邮管理网站模板</title>
+<!--[if IE 6]>
+<script src="/js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('img,a.opt,.png_bg');
+</script>
+<![endif]-->
+</head>
+<body>
+
+
+<div class="main-unit">
+	<div class="header"><span>表格</span></div>
+	<div class="unit-container">
+		<div class="hintmsg">[说明]&nbsp;使用了jqgrid插件的表格</div>
+		<table id="list47"></table>
+		<div id="plist47"></div>
+		<div class="btn-container">
+			<a class="btn-del">删除</a>
+		</div>
+	</div>
+</div><!--end of main-unit-->
+</body>
+</html>

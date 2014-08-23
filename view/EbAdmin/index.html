@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>EB图书馆Admin</title>
+    <link type="text/css" href="{/ $model->common_url /}/css/common/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="{/$model->common_url/}/js/common/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{/$model->common_url/}/js/common/jquery.ui.draggable.js"></script>
+    <script type="text/javascript" src="{/$model->common_url/}/js/common/jquery.alerts.js"></script>
+    <link type="text/css" href="{/ $model->common_url /}/css/common/jquery.alerts.css" rel="stylesheet" />
+    <SCRIPT type="text/javascript">
+
+        $(document).ready(function () {
+            $(".uniform-style input, .uniform-style textarea, .uniform-style select, .uniform-style button").uniform();
+        });
+
+       function validate() {
+		$.getJSON("{/ $model->common_url /}/update/getUpdateReaderInfo",function(result){
+			if(result){
+				jAlert("恭喜，数据更新成功!","更新成功");
+			}else{
+				jAlert("sorry ! 出现故障","更新失败");
+			}
+		});
+            return false;
+        }
+
+        function update() {
+            $.getJSON("{/ $model->common_url /}/update/getUpdateBookInfo",function(result){
+                if(result){
+                    jAlert("恭喜，数据更新成功!","更新成功");
+                }else{
+                    jAlert("sorry ! 出现故障","更新失败");
+                }
+            });
+            return false;
+        }
+
+    </SCRIPT>
+</head>
+<body>
+<h1>借书</h1>
+<!--
+    10.1.32.201
+    eblibrary 123456
+    端口号19222
+
+    root 123456
+    4428端口
+
+-->
+<!-- <form method = "post" action = "http://10.1.32.201:9002/mobile/updateBookInfo.php"> -->
+<form method = "post" action = "{/$model->action/}">
+    <input type="hidden" name="operation" value="2" />
+    <input type="text" name="borrower" value="1019"/>
+    <input type="text" name="isbn" value="9787111239505"/>
+    <input type="submit" />
+</form>
+
+<hr />
+
+<h1>还书</h1>
+<form method="post" action="{/$model->action/}">
+    <input type="hidden" name="operation" value="3" />
+    <input type="text" name="isbn" value="9787300028606"/>
+    <input type="submit" />
+</form>
+
+<hr />
+
+<h1>预约ceshi</h1>
+<form method="post" action="{/$model->common_url/}/reserve/informReserver">
+    <input type="text" name="isbn" value="9787300028606"/>
+    <input type="submit" />
+</form>
+<br><hr />
+
+<h1>新书入库ceshi</h1>
+<form method="post" action="{/$model->common_url/}/update/newBook">
+    <input type="text" name="isbn" value="9787300028606"/>
+    <input type="submit" />
+</form>
+<br><hr />
+
+
+<h1>更新用户数据</h1>
+<button style="position:relative;left:16%;top:-52px;font-size:20px;line-height:14px;border:10px;color:#909993;width:100px;height:25px" type="button" OnClick="validate();">提交</button>
+
+<h1>更新图书数据</h1>
+<button style="position:relative;left:16%;top:-52px;font-size:20px;line-height:14px;border:10px;color:#909993;width:100px;height:25px" type="button" OnClick="update();">提交</button>
+
+<br><hr />
+<h1>返回到图书馆</h1>
+<a style="position:relative;left:16%;top:-48px;font-size:20px;line-height:14px;border:10px;color:#909993;width:100px;height:25px" href="{/ $model->common_url /}">返回</a>
+</body>
+</html>

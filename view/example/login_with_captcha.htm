@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<SCRIPT type="text/javascript" src="/js/jquery-1.4.4.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.validationEngine-cn.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.validationEngine.js"></SCRIPT>
+<style>@import "/css/style.css";</style>
+<style>@import "/css/validationEngine.jquery.css";</style>
+<style>
+body{background:url("/images/bg_login.png") top center;}
+#login-panel{background:url("/images/bg_loginpanel.png") no-repeat;width:435px;height:540px;margin:0px auto;}
+#login-panel .form{padding-top:270px;}
+#login-panel .err{height:22px;color:#da0000;padding-left:165px;padding-top:4px;}
+#login-panel table{width:100%;margin:0 auto;}
+#login-panel input{background:url('/images/bg_sidebar.png') no-repeat top left;border:1px solid #bbb;padding:6px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+#login-panel th{padding-right:20px;font-size:14px;width:145px;text-align:right;color:#666;text-shadow:0px 1px 0px #fff;}
+#login-panel th,#login-panel td{padding-bottom:14px;}
+#btn-login{margin-top:10px;display:block;width:125px;height:38px;background-image:url("/images/bg_loginbtn.png");cursor:pointer;outline:none;}
+#btn-login:hover{background-position:0px -38px;}
+</style>
+<title>东信北邮管理网站模板</title>
+<SCRIPT type="text/javascript">
+$(document).ready(function () {
+	$("#login-form").validationEngine();
+});
+</script>
+<!--[if IE 6]>
+<script src=/js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('img,a.opt,.png_bg');
+</script>
+<![endif]-->
+</head>
+ <body>
+<div id="login-panel">
+	<div class="form">
+		<div class="err">用户名和密码不匹配！</div>
+		<form id="login-form">
+		<table>
+			<tr><th>用户名</th><td><input style="width:170px;" id="uid" class="validate[required]"/></td></tr>
+			<tr><th>密码</th><td><input type="password" style="width:170px;" id="pwd" class="validate[required]"/></td></tr>
+			<tr><th>验证码</th><td><input style="width:90px;" id="captcha" class="validate[required]"/></td></tr>
+			<tr><th></th><td><a id="btn-login"></a></td></tr>
+		</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>

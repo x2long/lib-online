@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="gradient-tabbar" style=""><div class="action-add-book"></div></div>
+                <div class="subheader">
+                    <div class="" id="tabs">
+                        <!--
+                        <a  href="#">最近流行</a><a  href="#">最新发布</a<a  href="#">今日排行</a>
+                        <a  href="#">周</a><a  href="#">月</a>
+                        <h1>EB图书馆馆欢迎您，今天是{/$smarty.now|date_format:"%Y年%m月%d日 %A"/}</h1>
+                        -->
+                        <div style="position:relative;top:3px;left:55%;font-size:15px;width:40%;color: rgba(218, 116, 197, 0.89);font-weight:bold" >
+                            <marquee id="showNotice" direction=left scrollamount=3 scrolldelay=100 onmouseover="this.stop();" onmouseout="this.start();"></marquee>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span12">
+                <div class="group">
+                    <div class="row mbooks-outer group">
+                        <div class="span2">
+                            <h3>名言警句</h3>
+                            <hr>
+                            <ul class="section support-devices">
+                                <small>谁念西风独自凉？萧萧黄叶闭疏窗，沉思往事立残阳。被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常，是寻常。</small>
+                            </ul>
+                            <h3>本周排行</h3>
+                            <hr>
+                            <div class="ranking">
+                                {/foreach from=$rankBooks key=k item=v/}
+                                <div class="rank-item group">
+                                    <div class="rank number">
+                                       {/$k+1/} .
+                                    </div>
+                                    <div class="rankbook group">
+                                        <a href="{/ $base_url /}/detail/?bookid={/$v->book_id/}" title="{/$v->book_name/}">
+                                            <img src="{/$v->image_url/}" />
+                                            <h5>{/$v->book_name/}</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                                {//foreach/}
+                            </div>
+                        </div>
+                        <div class="span9">
+                            <h3>编辑推荐</h3>
+                            <hr>
+                            <ol class="editor-choices mbooks group">
+                                <div class="slider-wrapper theme-default">
+                                    <div id="slider" class="nivoSlider">
+                                        {/foreach from=$recommendBooks key=k item=v/}
+                                        <a href="{/ $base_url /}/detail/index/bookid/{/$v->book_id/}"><img src="{/$v->image_url/}" width="100px" height="148px" alt="" title='<div onclick=window.location.href="{/ $base_url /}/detail/index/bookid/{/$v->book_id/}" class="pointer"><h3>{/$v->book_name/} <small>by {/$v->author/}</small></h3>{/$v->description/}</div>' /></a>
+                                        {//foreach/}
+                                        <a href="{/ $base_url /}/site/relax" target="_blank"><img src="http://img3.douban.com/mpic/s2364697.jpg" width="100px" height="148px" alt="" title='<div onclick=window.location.href="{/ $base_url /}/site/relax" class="pointer" target="_blank"><h3>热风 <small>by 鲁迅</small></h3>“月亮！月亮！&quot;
+&lt;br&gt;“还有半个那里去了？”
+&lt;br&gt;“被人家偷去了。”
+&lt;br&gt;“偷去做甚么？”
+&lt;br&gt;“当镜子照。”</div>' /></a>
+                                    </div>
+                                </div>
+                            </ol>
+                            <h3><a>最近流行 &nbsp;</a></h3>
+                            <hr>
+                            <ol class="mbooks group">
+                                {/foreach from=$popularBooks key=k item=v/}
+                                    {/if ($k+1)%4==0/}
+                                        <li id="mbook-{/$v->book_id/}" class="group nomarginright">
+                                    {/else/}
+                                        <li id="mbook-{/$v->book_id/}" class="group">
+                                    {//if/}
+
+                                <div class="mbook-card">
+                                    <div class="mbook-inner-card">
+                                        <div class="mbook-img">
+                                            <a href="{/ $base_url /}/detail?bookid={/$v->book_id/}">
+                                                <img src="{/$v->image_url/}" />
+                                            </a>
+                                        </div>
+                                        <div class="large-cover-button">
+                                            <a href="{/ $base_url /}/detail?bookid={/$v->book_id/}" class="ui-widget ui-corner-all"><span class="free">
+                                                {/if ($v->status)/}在架
+                                                {/else/}借出
+                                                {//if/}
+                                            </span></a>
+                                        </div>
+                                        <h5><a href="{/ $base_url /}/detail?bookid={/$v->book_id/}">{/$v->book_name/} </a> {/$v->author/}</h5>
+
+                                    </div>
+                                </div>
+                            </li>
+                                {//foreach/}
+                            </ol>
+                            <div class="pagination"></div>
+                            <div class="pagination">
+                                <div class="pagination">
+                                    {/if isset($model->pagination) && $model->pagination/}
+                                    {/if $model->currentPage <=1/}<span class="disabled prev">‹‹ 上一页</span>
+                                    {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->currentPage-1/}" class="page">‹‹ 上一页</a>
+                                    {//if/}
+                                    {/if $model->pagination.first/}<a href="{/ $base_url /}/library/index/currentPage/1" class="page">首&nbsp;&nbsp;页</a>{//if/}
+                                    {/if $model->pagination.ltomission/}<span class="disabled">...</span>{//if/}
+                                    {/foreach from= $model->pagination.pageNums key=k item=v/}
+                                        {/if $v ==$model->currentPage /} <span class="current page">{/$v/}</span>
+                                        {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$v/}" class="page">{/$v/}</a>
+                                        {//if/}
+                                    {//foreach/}
+                                    {/if $model->pagination.gtomission/}<span class="disabled">...</span>{//if/}
+                                    {/if $model->pagination.last/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->pagination.last/}" class="page">尾&nbsp;&nbsp;页</a>{//if/}
+                                    {/if $model->currentPage >=$model->totalPage/}<span class="disabled prev">下一页 ››</span>
+                                    {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->currentPage+1/}" class="next">下一页 ››</a>
+                                    {//if/}
+                                    {//if/}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/ include file="common/footer.html" /}
+</html>

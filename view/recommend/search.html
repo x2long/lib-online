@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="gradient-tabbar" style="">
+                    <form action="{/ $base_url /}/recommend/search" method="get" class="searchbox">
+                        <select name="searchType" style="position:relative;left:-2px;top:2px;font-size:12px;line-height:14px;border:0px;color:#909993;width:100px;height:25px">
+                            <option selected="bookName" value="bookName">书名</option>
+                            <option value="ISBN">ISBN</option>
+                            <option value="author">作者</option>
+                            <option value="recommender">推荐人</option>
+                        </select>
+                        <input type="text" name="searchContent" placeholder="根据左边条件，输入哟" id="id_q" />
+                        <input type="submit" value="搜索" class="minibutton">
+                    </form>
+                </div>
+                <div class="subheader">
+                    <div class="" id="tabs">
+                        <a {/if $model->tab_selector=="index"/} class="active" {//if/} href="{/ $base_url /}/recommend">所有推荐</a>
+                        <a {/if $model->tab_selector=="normal"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/normal')">自主推荐</a>
+                        <a {/if $model->tab_selector=="douban"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/douban')">豆瓣推荐</a>
+                        <a {/if $model->tab_selector=="mine"/} class="active" {//if/}  href="#" OnClick="Loginstate('{/$username/}','recommend/mine')">我的推荐</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="span12">
+                <div class="group">
+                    <div class="outer-space paragraphs-outer dig-index group">
+                        <h3>搜索结果 </h3>
+                        <hr>
+                        {/if empty($searchBooks)/}
+                        <h3>!!对不起，您要搜索的图书没有找到。
+                            <img src="{/ $base_url /}/images/1057880485.16813909.GIF" alt="图片地址有误">
+                        </h3>
+                        <hr>
+                        {/elseif $searchType=="recommender"/}
+                        <div class="paragraphs group">
+                            <div class="row">
+                                <div class="paragraph-item">
+                                    <div class="span2">
+                                        <div class="book-item-paragraph">
+                                            <div class="book-img">
+                                                <a href=""><img src={/$reader->image_url/} /></a>
+                                            </div>
+                                            <div class="large-cover-button">
+                                                <a class="ui-widget ui-corner-all"><span class="free">{/$reader->band/}级</span></a>
+                                            </div>
+                                            <h5><a >{/$reader->name/} <small>from {/$reader->department/}</small></a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span8">
+                                        <div class="box paragraph-content">
+                                            {/foreach from=$searchBooks key=k item=v/}
+                                            <div class="first-dig-user">
+                                                <a href="{/$v->book_url/}" target="_blank" title="由{/$v->author/}所著">
+                                                    <img src={/$v->image_url/} alt="crude" width="100" height="128" />
+                                                </a>
+                                                <div class="large-cover-button">
+                                                    <a class="ui-widget ui-corner-all">作者：{/$v->author/}</a>
+                                                </div>
+                                            </div>
+       <span class="ribbon ribbon-blue ribbon-offset-left ribbon-offset-top ribbon-left">
+        <p class="ribbon-inner">{/$v->book_name/}</p>
+        <span class="ribbon-before"></span>
+        <span class="ribbon-after"></span>
+      </span>
+                                            <h3><a href="">最是那惊鸿一瞥醉人心</a></h3>
+                                            <div class="paragraph-content">
+                                                <span class="shortened">{/$v->description.base/}</span>
+                                                <span class="extra hide">{/$v->description.extra/}</span>
+                                                <a class="show-more" href="#">更多介绍...</a>
+                                            </div>
+                                            <hr>
+                                            {//foreach/}
+                                            <div class="pagination">
+                                                <div class="pagination">
+                                                    {/if isset($model->pagination) && $model->pagination/}
+                                                    {/if $model->currentPage <=1/}<span class="disabled prev">‹‹ 上一页</span>
+                                                    {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->currentPage-1/}" class="page">‹‹ 上一页</a>
+                                                    {//if/}
+                                                    {/if $model->pagination.first/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/1" class="page">首&nbsp;&nbsp;页</a>{//if/}
+                                                    {/if $model->pagination.ltomission/}<span class="disabled">...</span>{//if/}
+                                                    {/foreach from= $model->pagination.pageNums key=k item=v/}
+                                                    {/if $v ==$model->currentPage /} <span class="current page">{/$v/}</span>
+                                                    {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$v/}" class="page">{/$v/}</a>
+                                                    {//if/}
+                                                    {//foreach/}
+                                                    {/if $model->pagination.gtomission/}<span class="disabled">...</span>{//if/}
+                                                    {/if $model->pagination.last/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->pagination.last/}" class="page">尾&nbsp;&nbsp;页</a>{//if/}
+                                                    {/if $model->currentPage >=$model->totalPage/}<span class="disabled prev">下一页 ››</span>
+                                                    {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->currentPage+1/}" class="next">下一页 ››</a>
+                                                    {//if/}
+                                                    {//if/}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/else/}
+                        <div class="paragraphs group">
+                            {/foreach from=$searchBooks key=k item=v/}
+                            <div class="row">
+                                <div class="paragraph-item">
+                                    <div class="span2">
+                                        <div class="book-item-paragraph">
+                                            <div class="book-img">
+                                                <a href="{/$v.book->book_url/}" target="_blank"><img src={/$v.book->image_url/} /></a>
+                                            </div>
+                                            <div class="large-cover-button">
+
+                                                <a class="ui-widget ui-corner-all"><span class="free">{/$v.book->recommend_num/}人推荐哟</span></a>
+
+                                            </div>
+                                            <h5><a href="{/$v.book->book_url/}" target="_blank">{/$v.book->book_name/}<small>by {/$v.book->author/}</small></a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span8">
+                                        <div class="box paragraph-content">
+                                            <div class="first-dig-user">
+                                                <a href="{/ $base_url /}/recommend/showUserbooks?userid={/$v.reader->user_id/}" title="由{/$v.reader->name/}推荐">
+                                                    <img src={/$v.reader->image_url/} alt="crude" width="100" height="128" />
+                                                </a>
+                                                <div class="large-cover-button">
+                                                    <a class="ui-widget ui-corner-all">推荐人：{/$v.reader->name/}</a>
+                                                </div>
+                                            </div>
+      <span class="ribbon ribbon-blue ribbon-offset-left ribbon-offset-top ribbon-left">
+        <p class="ribbon-inner">精彩短篇</p>
+        <span class="ribbon-before"></span>
+        <span class="ribbon-after"></span>
+      </span>
+
+                                            <h3><a href="">知其梗概</a></h3>
+                                            <div class="paragraph-content">
+                                                <span class="shortened">{/$v.book->description.base/}</span>
+                                                <span class="extra hide">{/$v.book->description.extra/}</span>
+                                                <a class="show-more" href="#">更多精彩...</a>
+                                                <div class="actions ajax-replaced-with">
+                                                    <ul>
+                                                        
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {//foreach/}
+                        </div>
+                        <div class="pagination">
+                            <div class="pagination">
+                                {/if isset($model->pagination) && $model->pagination/}
+                                {/if $model->currentPage <=1/}<span class="disabled prev">‹‹ 上一页</span>
+                                {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->currentPage-1/}" class="page">‹‹ 上一页</a>
+                                {//if/}
+                                {/if $model->pagination.first/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/1" class="page">首&nbsp;&nbsp;页</a>{//if/}
+                                {/if $model->pagination.ltomission/}<span class="disabled">...</span>{//if/}
+                                {/foreach from= $model->pagination.pageNums key=k item=v/}
+                                {/if $v ==$model->currentPage /} <span class="current page">{/$v/}</span>
+                                {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$v/}" class="page">{/$v/}</a>
+                                {//if/}
+                                {//foreach/}
+                                {/if $model->pagination.gtomission/}<span class="disabled">...</span>{//if/}
+                                {/if $model->pagination.last/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->pagination.last/}" class="page">尾&nbsp;&nbsp;页</a>{//if/}
+                                {/if $model->currentPage >=$model->totalPage/}<span class="disabled prev">下一页 ››</span>
+                                {/else/}<a href="{/ $base_url /}/recommend/search/searchType/{/$searchType/}/searchContent/{/$model->content/}/currentPage/{/$model->currentPage+1/}" class="next">下一页 ››</a>
+                                {//if/}
+                                {//if/}
+                            </div>
+                        </div>
+                       {//if/}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/ include file="common/footer.html" /}
+</html>

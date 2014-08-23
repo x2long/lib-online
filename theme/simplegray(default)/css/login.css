@@ -1,0 +1,14 @@
+body{background:url("../images/bg_login.png") top center;}
+#login-panel{background:url("../images/bg_loginpanel.png") no-repeat;width:435px;height:540px;margin:0px auto;}
+#login-panel .form{padding-top:270px;}
+#login-panel .err{height:22px;color:#da0000;padding-left:165px;padding-top:12px;}
+#login-panel table{width:100%;margin:0 auto;}
+#login-panel input{background:url('../images/bg_sidebar.png') no-repeat top left;border:1px solid #bbb;padding:6px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+
+#login-panel th{padding-right:20px;font-size:14px;width:145px;text-align:right;color:#666;text-shadow:0px 1px 0px #fff;}
+#login-panel th,#login-panel td{padding-bottom:20px;}
+#btn-login{margin-top:10px;display:block;width:125px;height:38px;background-image:url("../images/bg_loginbtn.png");cursor:pointer;outline:none;}
+#btn-login:hover{background-position:0px -38px;}
+
+.login2 #login-panel .err{height:22px;color:#da0000;padding-left:165px;padding-top:4px;}
+.login2 #login-panel th,#login-panel td{padding-bottom:14px;}

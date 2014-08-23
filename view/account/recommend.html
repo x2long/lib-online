@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+<SCRIPT type="text/javascript">
+			function showExtra(id){
+							$("span#shortened-"+id).click();
+									return false;
+										}				
+								</SCRIPT>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="gradient-tabbar" style=""></div>
+                <div class="subheader">
+                    <div class="" id="tabs">
+                        <a {/if $model->tab_selector=="index"/} class="active" {//if/} href="{/ $base_url /}/account">预约图书</a>
+                        <a {/if $model->tab_selector=="renew"/} class="active" {//if/}  href="{/ $base_url /}/account/renew">续借图书</a>
+                        <a {/if $model->tab_selector=="recommend"/} class="active" {//if/}  href="{/ $base_url /}/account/recommend">我的推荐</a>
+                        <a {/if $model->tab_selector=="set"/} class="active" {//if/}  href="{/ $base_url /}/account/set">个人设置</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="span12">
+                <div class="group">
+
+                    <div class="outer-space paragraphs-outer dig-index group">
+                        <div class="paragraphs group">
+
+                            <div class="row">
+                                <div class="paragraph-item">
+                                    <div class="span2">
+                                        <div class="book-item-paragraph">
+                                            <div class="book-img">
+                                                <a href=""><img src={/$reader->image_url/} /></a>
+                                            </div>
+                                            <div class="large-cover-button">
+                                                <a class="ui-widget ui-corner-all"><span class="free">{/$reader->band/}级</span></a>
+                                            </div>
+                                            <h5><a >{/$reader->name/} <small>from {/$reader->department/}</small></a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span8">
+                                        <div class="box paragraph-content">
+                                            {/if empty($recommendBooks)/}
+                                            <h3>!!对不起，您还没有推荐呢，赶紧去推荐吧。。
+                                                <img src="{/ $base_url /}/images/1057880485.16813909.GIF" alt="图片地址有误">
+                                            </h3>
+                                            <hr>
+                                            {/else/}
+                                            {/foreach from=$recommendBooks key=k item=v/}
+                                            <div class="first-dig-user">
+													<a href="{/$v->book_url/}" target="_blank" title="由{/$v->author/}所著">
+                                                    <img src={/$v->image_url/} alt="crude" width="100" height="128" />
+                                                </a>
+                                                <div class="large-cover-button">
+                                                    <a class="ui-widget ui-corner-all">作者：{/$v->author/}</a>
+                                                </div>
+                                            </div>
+       <span class="ribbon ribbon-blue ribbon-offset-left ribbon-offset-top ribbon-left">
+        <p class="ribbon-inner">{/$v->book_name/}</p>
+        <span class="ribbon-before"></span>
+        <span class="ribbon-after"></span>
+      </span>
+                                            <h3><a href="">&nbsp;&nbsp;</a></h3>
+                                            <div class="paragraph-content">
+																								<span id="shortened-{/$v.recommend_id/}" class="shortened">{/$v->description.base/}</span>
+                                                <span class="extra hide">{/$v->description.extra/}</span>
+																								<a class="show-more" onclick='showExtra({/$v.recommend_id/});'>更多介绍...</a>
+                                                <br><br>
+                                                <input id="cancel-{/$v.recommend_id/}" type="submit" value="取消推荐" class="btn btn-primary ajaxUrl-selector" title="取消推荐">
+                                            </div>
+                                            <hr>
+                                            {//foreach/}
+                                            <a style="display:none;" id= "ajaxCancelRecommendUrl" href="{/$base_url/}/account/getCancelRecommend/recommend_id/"></a>
+                                            <div class="pagination">
+                                                <div class="pagination">
+                                                    {/if isset($model->pagination) && $model->pagination/}
+                                                    {/if $model->currentPage <=1/}<span class="disabled prev">‹‹ 上一页</span>
+                                                    {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->currentPage-1/}" class="page">‹‹ 上一页</a>
+                                                    {//if/}
+                                                    {/if $model->pagination.first/}<a href="{/ $base_url /}/library/index/currentPage/1" class="page">首&nbsp;&nbsp;页</a>{//if/}
+                                                    {/if $model->pagination.ltomission/}<span class="disabled">...</span>{//if/}
+                                                    {/foreach from= $model->pagination.pageNums key=k item=v/}
+                                                    {/if $v ==$model->currentPage /} <span class="current page">{/$v/}</span>
+                                                    {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$v/}" class="page">{/$v/}</a>
+                                                    {//if/}
+                                                    {//foreach/}
+                                                    {/if $model->pagination.gtomission/}<span class="disabled">...</span>{//if/}
+                                                    {/if $model->pagination.last/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->pagination.last/}" class="page">尾&nbsp;&nbsp;页</a>{//if/}
+                                                    {/if $model->currentPage >=$model->totalPage/}<span class="disabled prev">下一页 ››</span>
+                                                    {/else/}<a href="{/ $base_url /}/library/index/currentPage/{/$model->currentPage+1/}" class="next">下一页 ››</a>
+                                                    {//if/}
+                                                    {//if/}
+                                                </div>
+                                            </div>
+                                            {//if/}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/ include file="common/footer.html" /}
+<script type="text/javascript" src="{/$base_url/}/js/common/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="{/$base_url/}/js/common/jquery.alerts.js"></script>
+<link type="text/css" href="{/ $base_url /}/css/common/jquery.alerts.css" rel="stylesheet" />
+<SCRIPT type="text/javascript">
+    $(document).ready(function () {
+        /*
+         *实现我的推荐里的“取消”功能
+         *edit by xuxiaolong 2013/8/6
+         */
+        $('div.paragraph-content input.ajaxUrl-selector').click(function(event){
+            event.preventDefault();
+            var inputId = $(this).attr("id");
+            var id = inputId.substring(7,inputId.length);
+            var url = $('a#ajaxCancelRecommendUrl').attr("href");
+            $.getJSON(url+id, function(result){
+                if(result=='no'){
+                    jAlert("sorry ! 该书已被其他人顶过，就高台贵手嘛","再想想看");
+                }else{
+                    $('#cancel-'+id).replaceWith("<span class='disabled'><font size='4' color='#CC0000'>已取消该条记录</font></span>");
+                }
+            });
+        });
+    });
+</SCRIPT>
+</html>

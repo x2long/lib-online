@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" /}
+<div class="container">
+<div class="container">
+<div class="row">
+<div class="span12">
+    <div class="gradient-tabbar" style=""></div>
+    <div class="subheader">
+        <div class="" id="tabs">
+            <a  href="/popular/">最近流行</a>
+            <a  href="/new/">最新发布</a>
+            <a  href="/hot/">今日排行</a>
+            <a  href="/weekly/">周</a>
+            <a  href="/monthly/">月</a>
+        </div>
+    </div>
+</div>
+<div class="span12">
+    <div class="group">
+        <div class="bg-white book-detail group" itemscope itemtype="http://schema.org/WebPage">
+            <div class="row book-info">
+                <div class="span8">
+                    <div class="book-meta inner book-detail" itemscope itemtype="http://schema.org/Book">
+                        <h2 class="iblue" itemprop="name">{/$book->book_name/}</h2>
+                        <h3 class="author metadata" itemprop="author"> by <b>{/$book->author/}</b></h3>
+                        <h5 class="category"></h5>
+                        <p class="summary"></p>
+                        <div class="abbreviation pointer">
+                            <span class="shortened">{/$book->description/}</span>
+                            <span class="extra hide">{/$book->description/}</span>
+                            <a class="show-more" href="#">更多介绍...</a></div> </p>
+      <span><small class="notice">144,494字.估计阅读时间：12 小时, 2 分钟</small><a href="http://book.douban.com/subject/5299764/" target="_blank" class="pull-right" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">豆瓣评分: <span itemprop="ratingValue" class="rating">9.4</span><span style="display:none;" itemprop="reviewCount">4663</span><span style="display:none;" itemprop="bestRating">10</span></a></span>
+ </div>
+            </div>
+            <div class="span3">
+                <img class="cover" itemprop="image" src="{/$book->image_url/}" />
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span8">
+                <div class="inner">
+                    <div class="ajax-replaced-with random-pages">
+                        <h3>第3节</h3>
+                        <div class="random-box"><p>“是的，可以说我后悔没有推。”</p><p>他们并排坐在尘土厚积的地板上。他把她拉得近一些。</p>
+                        <p>她的脑袋偎在他的肩上，她头发上的香气盖过了鸽子屎臭。</p>
+                        <p>他想，她很年轻，对生活仍有企望，她不懂得，把一个碍事朋人推下悬崖去不解决任何问题，“实际上不会有什么不同，”他说。</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li class="like"><a class="ui-button ui-widget ui-corner-all like-paragraphs-ajax" href="/dig/like/paragraphs/512768310/996/39/4/"><span class="ui-button-text"><i class="icon-set icon icon-like"></i>喜欢</span></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="related-books chapter">
+                        <h3>猜你喜欢</h3>
+                        <hr><ul>
+                            <li class="ebook " id="ebook-303">
+                                <a href="/detail/816213401/">
+                                    <img src="http://img3.douban.com/mpic/s3921115.jpg" />
+                                    <h5>动物农场（中英双语珍藏本）</h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{/ include file="common/footer.html" /}
+</html>

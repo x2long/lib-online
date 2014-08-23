@@ -1,0 +1,37 @@
+{/include file='mail/mailHeader.htm'/}
+
+<p>
+您好，{/$model->employeename/}！</br>
+您{/$model->yearMonth/}的出勤情况如下（正常出勤记录未予显示）：
+</p>
+<hr />
+<table class="list">
+    <tr>
+        <th>工号</th>
+        <th>姓名</th>
+        <th>部门</th>
+        <th>上班时间</th>
+        <th>下班时间</th>
+        <th>说明</th>
+    </tr>
+    {/ foreach from=$model.reminderRecords key=recordKey item=record /}
+    <tr class="{/cycle values='odd,even'/}"> 
+        <td>{/$record->employeecode/}</td>
+		<td>{/$record->employeename/}</td>
+		<td>{/$record->deptname/}</td>
+        <td>{/$record->frmtime/}</td>
+		<td>{/$record->totime/}</td>
+		<td>{/$record->workdesc/}</td>
+    </tr>
+    {//foreach /}
+</table>
+</br>
+注:NO RECORD为无刷卡记录情况，SHORT JOBTERM为刷卡不全或工作时间较短情况。
+<hr />
+<p>
+请您于{/$model->yearMonth/}03日前，登录<a href="http://mjkq.ebupt.net/">EB考勤网站</a>进行查询，并及时添加请假/公出等待审核通过，以免影响考勤统计。
+</br>
+【小贴士】未刷上卡及学生回校上课在公出页面添加；每次添加请假部门经理均会收到提醒邮件，请注意选择正确时间减少误操作。
+</p>
+{/include file='mail/mailFooter.htm'/}
+

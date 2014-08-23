@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+<SCRIPT type="text/javascript">
+			function showExtra(id){
+				$("span#shortened-"+id).click();
+					return false;
+				}				
+</SCRIPT>
+<div class="container">
+<div class="container">
+<div class="row">
+<div class="span12">
+    <div class="gradient-tabbar" style="">
+        <form action="{/ $base_url /}/recommend/search" method="get" class="searchbox">
+            <select name="searchType" style="position:relative;left:-2px;top:2px;font-size:12px;line-height:14px;border:0px;color:#909993;width:100px;height:25px">
+                <option selected="bookName" value="bookName">书名</option>
+                <option value="ISBN">ISBN</option>
+                <option value="author">作者</option>
+                <option value="recommender">推荐人</option>
+            </select>
+            <input type="text" name="searchContent" placeholder="根据左边条件，输入哟" id="id_q" />
+            <input type="submit" value="搜索" class="minibutton">
+        </form>
+    </div>
+    <div class="subheader">
+        <div class="" id="tabs">
+            <a {/if $model->tab_selector=="index"/} class="active" {//if/} href="{/ $base_url /}/recommend">所有推荐</a>
+            <a {/if $model->tab_selector=="normal"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/normal')">自主推荐</a>
+            <a {/if $model->tab_selector=="douban"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/douban')">豆瓣推荐</a>
+			<a {/if $model->tab_selector=="mine"/} class="active" {//if/}  href="#" OnClick="Loginstate('{/$model->username/}','recommend/mine')">我的推荐</a>
+        </div>
+    </div>
+
+</div>
+<div class="span12">
+<div class="group">
+
+<div class="outer-space paragraphs-outer dig-index group">
+<div class="paragraphs group">
+    {/if empty($recommends)/}
+    <h3>!!当前尚无推荐的图书，你可以成为推荐第一人，抓住机会吧。。。
+        <img src="{/ $base_url /}/images/1057880485.16813909.GIF" alt="图片地址有误">
+    </h3>
+    <hr>
+    {/else/}
+    {/foreach from=$recommends key=k item=v/}
+
+<div class="row">
+    <div class="paragraph-item">
+        <div class="span2">
+            <div class="book-item-paragraph">
+                <div class="book-img">
+
+                    <a href="{/$v.book->book_url/}" target="_blank"><img src={/$v.book->image_url/} /></a>
+
+                </div>
+                <div class="large-cover-button">
+
+                    <a class="ui-widget ui-corner-all"><span class="free"><span id="status-{/$v.book->recommend_id/}">{/$v.book->recommend_num/}</span>人次推荐哟</span></a>
+
+                </div>
+                <h5><a href="{/$v.book->book_url/}" target="_blank">{/$v.book->book_name/}<small>by {/$v.book->author/}</small></a></h5>
+            </div>
+        </div>
+        <div class="span8">
+            <div class="box paragraph-content">
+                <div class="first-dig-user">
+                    <a href="{/ $base_url /}/recommend/showUserbooks?userid={/$v.reader->user_id/}" title="由{/$v.reader->name/}推荐,点击看Ta所有的哟">
+                        <img src={/$v.reader->image_url/} alt="crude" width="100" height="128" />
+                    </a>
+                    <div class="large-cover-button">
+                        <a class="ui-widget ui-corner-all">推荐人：{/$v.reader->name/}</a>
+                    </div>
+                </div>
+      <span class="ribbon ribbon-blue ribbon-offset-left ribbon-offset-top ribbon-left">
+        <p class="ribbon-inner">{/$v.book->book_name/}</p>
+        <span class="ribbon-before"></span>
+        <span class="ribbon-after"></span>
+      </span>
+
+                <h3><a href="">预览梗概</a></h3>
+                <div class="paragraph-content">
+										<span id="shortened-{/$v.book->recommend_id/}" class="shortened">{/$v.book->description.base/}</span>
+                    <span class="extra hide">{/$v.book->description.extra/}</span>
+										<a class="show-more" onclick='showExtra({/$v.book->recommend_id/});'>更多精彩...</a>
+                    <br><br><hr>
+                    <div class="actions ajax-replaced-with">
+                        <ul>
+{/if $model->username =="Guest"/}
+<input type="submit" value="登录可顶之" class="btn btn-primary" OnClick="Loginstate('{/$model->username/}','recommend/index/currentPage/{/$model->currentPage/}')">
+{/elseif $v.coockie/}
+ <span class='disabled'><font size='3' color='#660000'>已顶</font></span>
+{/else/}
+<input id="like-{/$v.book->recommend_id/}" type="submit" value="&nbsp;&nbsp;&nbsp;顶起&nbsp;&nbsp;" class="btn btn-primary ajaxUrl-like" title="顶起">
+{//if/}
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {//foreach/}
+    {//if/}
+    <a style="display:none;" id= "ajaxLikeUrl" href="{/$base_url/}/recommend/getAddLike/recommend_id/"></a>
+
+</div>
+<div class="pagination">
+    <div class="pagination">
+        {/if isset($model->pagination) && $model->pagination/}
+        {/if $model->currentPage <=1/}<span class="disabled prev">‹‹ 上一页</span>
+        {/else/}<a href="{/ $base_url /}/recommend/index/currentPage/{/$model->currentPage-1/}" class="page">‹‹ 上一页</a>
+        {//if/}
+        {/if $model->pagination.first/}<a href="{/ $base_url /}/recommend/index/currentPage/1" class="page">首&nbsp;&nbsp;页</a>{//if/}
+        {/if $model->pagination.ltomission/}<span class="disabled">...</span>{//if/}
+        {/foreach from= $model->pagination.pageNums key=k item=v/}
+        {/if $v ==$model->currentPage /} <span class="current page">{/$v/}</span>
+        {/else/}<a href="{/ $base_url /}/recommend/index/currentPage/{/$v/}" class="page">{/$v/}</a>
+        {//if/}
+        {//foreach/}
+        {/if $model->pagination.gtomission/}<span class="disabled">...</span>{//if/}
+        {/if $model->pagination.last/}<a href="{/ $base_url /}/recommend/index/currentPage/{/$model->pagination.last/}" class="page">尾&nbsp;&nbsp;页</a>{//if/}
+        {/if $model->currentPage >=$model->totalPage/}<span class="disabled prev">下一页 ››</span>
+        {/else/}<a href="{/ $base_url /}/recommend/index/currentPage/{/$model->currentPage+1/}" class="next">下一页 ››</a>
+        {//if/}
+        {//if/}
+    </div>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+{/ include file="common/footer.html" /}
+
+<script type="text/javascript" src="{/$base_url/}/js/common/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="{/$base_url/}/js/common/jquery.alerts.js"></script>
+<link type="text/css" href="{/ $base_url /}/css/common/jquery.alerts.css" rel="stylesheet" />
+<SCRIPT type="text/javascript">
+    $(document).ready(function () {
+        /*
+         *实现图书搜索结果中的“顶一下”按钮功能
+         *edit by xuxiaolong 2013/8/5
+         */
+        $('div.ajax-replaced-with input.ajaxUrl-like').click(function(event){
+            event.preventDefault();
+            var inputId = $(this).attr("id");
+            var id = inputId.substring(5,inputId.length);
+            var url = $('a#ajaxLikeUrl').attr("href");
+            var Days = 1;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days*24*60*60*1000);
+            $.getJSON(url+id, function(result){
+                if(result=='no'){
+                    jAlert("每个人呢，对同一本书最多可顶5次","XXX只能帮到这里了");
+                }else{
+                    var recommend_num=$('#status-'+id).text();
+                    var num=Number(recommend_num)+1;
+                    $('#like-'+id).replaceWith("<span class='disabled'><font size='3' color='#660000'>已顶</font></span>");
+                    $('#status-'+id).text(num);
+                    jAlert("为我喜欢的书投票成功","这下可以放心了");
+                    document.cookie=id+"="+"yes;path=/eblib-online;expires="+exp.toGMTString();
+                }
+            });
+        });
+    });
+</SCRIPT>
+</html>

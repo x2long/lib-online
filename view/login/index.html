@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="login/header.html" username=$username pageselector=$pageselector/}
+<div class="container">
+    <div class="row">
+        <div class="span8">
+            <div class="page-header"><h2 class="title">
+                用户登录
+            </h2></div>
+            <div class="page-content">
+                <form id="userForm" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='834605ac39be20772ddd0b5643094aaf' /></div>
+                    <fieldset>
+                        <div class="clearfix error">
+                            <label for="xlInput">&nbsp;</label>
+                            <div class="input">
+                                <span class="help-inline">{/ $model->errorInfo/}</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label for="userid">
+                                <font color="red" size="2">*</font>您的工号&nbsp;:
+                            </label>
+                            <div class="input">
+                                <input id="id_username" type="text" class="required" name="userid" maxlength="40" />
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label for="password">
+                                <font color="red" size="2">*</font>登录密码&nbsp;:
+                            </label>
+                            <div class="input">
+                                <input id="id_password" type="password" class="required" name="password" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label for="xlInput">&nbsp;</label>
+                            <div class="input">
+                                <span class="help-block">祝您阅读愉快</span>
+                            </div>
+                            <div class="input checkbox">
+                                <label class="help-inline">
+                                    <input type="checkbox" name="remember_me" id="id_remember_me" />
+                                    记住我的登录状态
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" OnClick="document.submitForm.submit();" value="登录">&nbsp;</input><span class="help-inline"><a href="{/$base_url/}/login/resetPassword" >忘记密码？重置一下~</a></span>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui-layout-south">
+    <script src="{/$base_url/}/js/common/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{/$base_url/}/js/common/jqueryui-1.8.17.min.js"></script>
+    <script src="{/$base_url/}/js/common/jquery.form.js" type="text/javascript"></script>
+    <script src="{/$base_url/}/js/old/bootstrap.min.js"></script>
+    <script src="{/$base_url/}/js/common/csrf.js"></script>
+    <script src="{/$base_url/}/js/old/tooltip.js"></script>
+    <script src="{/$base_url/}/js/common/jquery.validate.js"></script>
+    <script src="{/$base_url/}/js/common/validate.js"></script>
+
+    <script src="{/$base_url/}/js/common/app.js" type="text/javascript"></script>
+    <!--    <script src="{/$base_url/}/js/old/wb.js" type="text/javascript" charset="utf-8"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        });
+    </script>
+</div>
+</body>
+</html>

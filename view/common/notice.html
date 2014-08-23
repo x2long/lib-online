@@ -1,0 +1,13 @@
+<SCRIPT type="text/javascript">
+	$(document).ready(function () {
+		$.getJSON("{/$base_url/}/site/getNotices", function(result){
+			$.each(result, function(i, field){
+				$("#showNotice").append(field + " ");
+			});
+		});
+	});
+</SCRIPT>
+	
+<marquee id="showNotice" direction=left scrollamount=3 scrolldelay=100 onmouseover="this.stop();" onmouseout="this.start();">
+	
+</marquee>

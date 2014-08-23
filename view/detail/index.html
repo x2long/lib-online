@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+		{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+		<script src="{/$base_url/}/lib/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <link type="text/css" href="{/$base_url/}/lib/thirdparty/star-rating/jquery.rating.css" rel="Stylesheet" />
+
+        <script type="text/javascript" src="{/$base_url/}/lib/thirdparty/star-rating/jquery.rating.js"></script>
+        <script type="text/javascript" src="{/$base_url/}/lib/thirdparty/star-rating/star_demo.js"></script>
+<SCRIPT type="text/javascript">
+				function showExtra(){
+					$("span.shortened").click();
+					return false;
+				}				
+			</SCRIPT>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="gradient-tabbar" style=""><div class="action-add-book"></div></div>
+                <div class="subheader">
+                    <div class="" id="tabs">
+                        <div style="position:relative;top:3px;left:55%;font-size:15px;width:40%;color: rgba(218, 116, 197, 0.89);font-weight:bold" >
+                            <marquee id="showNotice" direction=left scrollamount=3 scrolldelay=100 onmouseover="this.stop();" onmouseout="this.start();"></marquee>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span12">
+                <div class="group">
+                    <div class="bg-white book-detail group">
+                        <div class="row book-info">
+                            <div class="span8">
+                                <div class="book-meta inner book-detail">
+                                    <h2 class="iblue" itemprop="name">{/$book->book_name/}</h2>
+                                    <h3 class="author metadata" itemprop="author"> by <b>{/$book->author/}</b></h3>
+                                    <h5 class="category"></h5>
+                                    <p class="summary">
+                                    <div class="abbreviation pointer">
+                                        <span class="shortened">{/$book->description.base/}</span>
+                                        <span id="more-info" class="extra hide">{/$book->description.extra/}</span>
+
+                                    <a class="show-more"  onclick='showExtra();'>更多介绍...</a></div>
+			
+                                    </p>
+                                    <span>
+                                        <small class="notice">{/$book->pages/}页.估计阅读时间：{/$params.hour/} 小时, {/$params.minute/} 分钟</small>
+                                        <a href={/$params.book_url/} target="_blank" class="pull-right">豆瓣评分:
+                                            <span itemprop="ratingValue" class="rating">{/$params.score/}</span>
+                                     </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <img class="cover" itemprop="image" src="{/$book->image_url/}" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="span8">
+                                <div class="inner">
+                                    <div class="ajax-replaced-with random-pages">
+									<a style="display:none;" id= "ajaxUrl" href="{/$base_url/}/detail/getComment/bookid/"></a>
+                                        <h3>精彩评论</h3>
+                                        {/if empty($comment)/}
+                                        <br>
+                                        <br>
+                                        <hr>
+                                        <h3>尚无该书的评论哟
+                                            <img src="{/ $base_url /}/images/1057880485.16813909.GIF" alt="图片地址有误">
+                                        </h3>
+                                        <hr>
+                                        <p>您可以先去评一评</p>
+                                        <hr>
+                                        {/else/}
+                                        <div class="random-box">
+											<p><font size='3' color='#993300'>&nbsp;{/$comment->comment_name/}</font></p>
+                                            <p>{/$comment->comment_content/}</p>
+											<p align="right">————&nbsp;Score&nbsp;{/$comment->comment_level/} 分&nbsp;<b>By &nbsp;:&nbsp;{/$comment->comment_author/}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                        </div>
+                                        {//if/}
+                                        <div class="actions">
+                                            <ul>												
+                                                <li class="random">
+                                                    {/if !empty($comment)/}
+                                                    <input id="input-{/$book->book_id/}" type="submit" class="btn btn-primary ajaxUrl-selector" value="再挖一评">&nbsp;</input>
+                                                    {//if/}
+</li>
+{/if $model->username =="Guest"/}
+<li class="comment pull-right">
+<input type="submit" value="登录可点评" class="btn btn-primary" OnClick="Loginstate('{/$model->username/}','detail?bookid={/$book->book_id/}')">
+    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</li>
+{/else/}
+<li class="comment pull-right">
+<input type="submit" value="&nbsp;点&nbsp;&nbsp;&nbsp;评&nbsp;" class="btn btn-primary" title="点评" OnClick="ShowMsgBox();"><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</li>
+{//if/}
+		
+		<div id="respond" class="actions" style="display:none;">
+		<h3>我来评论这本书</h3>		
+		<form id="commentform" method="post" action="{/$base_url/}/detail/addComment">
+            <p>
+                <label for="div_StarRating">
+                    <h3>打分(可选):</h3>
+                </label>
+            <div id="div_StarRating"></div>
+            </p>
+
+            <p> &nbsp </p>
+
+            <p>
+                <label for="comment_name">
+                    <h3>标题(可选):</h3>
+                </label>
+                <input id="id_q" placeholder="不怕写不了，就怕想不到" style="color: #999;" aria-required="true" tabindex="1" size="22" value="" name="comment_name" />
+            </p>
+			<p>{/$ck/}</p>
+            <input type="hidden" name="book_id" value="{/$book->book_id/}"/>
+			<p>
+				<input type="submit" class="btn btn-primary" value="&nbsp;*评&nbsp;&nbsp;论*&nbsp;">&nbsp;</input>
+			</p>
+		</form>		
+	</div>
+										</ul>
+                                        </div>
+                                    </div>
+                                    <div class="related-books chapter">
+                                        <hr>
+                                        <h3>我们猜您喜欢</h3>
+                                        <hr>
+                                        <ul>
+                                        {/foreach from=$params.likebooks key=k item=v/}
+                                        {/if ($k+1)%4==0/}
+                                            <li id="ebook-{/$v.book_id/}" class="ebook nomarginright">
+                                            {/else/}
+                                            <li id="ebook-{/$v.book_id/}" class="ebook">
+                                            {//if/}
+                                            <a href="{/ $base_url /}/detail?bookid={/$v.book_id/}" target="_blank">
+																								<img src="{/$v.image_url/}" alt="{/$v.book_name/}" />
+                                                <h5>{/$v.book_name/}</h5>
+                                            </a>
+                                        </li>
+                                        {//foreach/}
+                                    </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/ include file="common/footer.html" /}
+<SCRIPT type="text/javascript">
+	$(document).ready(function () {
+		/*
+	*实现图书搜索结果中的“再来一评”按钮功能
+	*edit by xuxiaolong 2013/8/5
+	*/
+	$('div.ajax-replaced-with div.actions input.ajaxUrl-selector').click(function(event){
+		event.preventDefault();
+		var inputId = $(this).attr("id");
+		var id = inputId.substring(6,inputId.length);
+		var url = $('a#ajaxUrl').attr("href");
+		//console.log(url);
+		//alert(url);
+		$.getJSON(url+id, function(result){
+			var str  ="<p><font size='3' color='#993300'>&nbsp;"+result.title+"</font></p>";
+			str +="<p>"+result.content+"</p>";
+            str +="<p align='right'>————&nbsp;Score&nbsp;"+result.score+"&nbsp;分&nbsp;<b>By &nbsp;:&nbsp;"+result.author+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>";
+			$('div.random-box').html(str);
+		});
+	});
+	});
+    function ShowMsgBox() {
+        $("div#respond").toggle();
+        return false;
+		}
+</SCRIPT>
+</html>

@@ -1,0 +1,16 @@
+tr.even td{background-color:#f8f8f8;}
+tr.odd:hover td{background-color:#e9f8fc;}
+tr.even:hover td{background-color:#e5f4f8;}
+
+.dataTables_length{width:40%;float:right;text-align:right;padding-bottom:5px;}
+.dataTables_filter {width: 50%;float: left;padding-bottom:5px;}
+.dataTables_filter input{width:200px;background:url('../images/bg_sidebar.png') no-repeat top left;border:1px solid #bbb;padding:3px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+
+.dataTables_info{float:left;width:40%;padding:10px 0 5px 0;}
+.dataTables_paginate{float:right;text-align:right;padding:10px 0 5px 0;}
+.paging_full_numbers{height:22px;}
+
+.paging_full_numbers span.paginate_button,.paging_full_numbers span.paginate_active{border:1px solid #ccc;margin-left:6px;cursor:pointer;padding:2px 5px;background:url('../images/bg_tableheader.png') repeat-x;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;}
+.paging_full_numbers span.paginate_active{background:url('../images/bg_menu1b.png') repeat-x;color:#fff;border:1px solid #666;}

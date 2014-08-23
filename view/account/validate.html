@@ -1,0 +1,56 @@
+<SCRIPT type="text/javascript">
+    function validate() {
+        var password = '';
+        var password2 = '';
+
+        var css = {'color': 'red', 'margin': 'margin'};
+        var css_hide = {'display': 'none'};
+
+        if($("#pre_password").attr('value') == ''){
+            $('#pre_password_error').text('请输入原密码').css(css).slideDown();
+        } else {
+            $.getJSON("{/ $base_url /}/login/validatePassword/password/" + $('#pre_password').attr('value') , function(result){
+                if(result == "yes") {
+                    $('#pre_password_error').html('').css(css_hide);
+                }else {
+                    $('#pre_password_error').html('原密码错误').css(css).slideDown();
+                    return false;
+                }
+            });
+        }
+
+        if($("#password").attr('value') == ''){
+            $('#password_error').html('请输入新密码').css(css).slideDown();
+        } else {
+            if($("#password").attr('value') == $("#pre_password").attr('value')) {
+                $('#password_error').html('新密码不能与原密码相同').css(css).slideDown();
+                password = "false";
+            } else {
+                $('#password_error').html('').css(css_hide);
+                password = "true";
+            }
+        }
+
+        if($("#password").attr('value') != $("#password2").attr('value')){
+            $('#password2_error').html('两次输入密码不一致').css(css).slideDown();
+        } else {
+            $('#password2_error').html('').css(css_hide);
+            password2 = "true";
+        }
+
+        if(password == 'true' && password2 == 'true') {
+            $.getJSON("{/ $base_url /}/login/updatePassword/pre_password/" + $('#pre_password').attr('value') + "/new_password/" + $('#password2').attr('value'), function(result){
+                if(result == "yes") {
+                    alert("恭喜，密码修改成功！");
+                    document.getElementById("changePasswordForm").reset();
+                }else {
+                    $('#pre_password_error').html('原密码错误').css(css).slideDown();
+                }
+            });
+        } else {
+            //alert("不好意思，密码修改失败！");
+        }
+
+        return false;
+    }
+</SCRIPT>

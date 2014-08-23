@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{/ include file="common/header.html" username=$model->username pageselector=$model->page_selector/}
+<div class="container">
+<div class="container">
+<div class="row">
+<div class="span12">
+    <div class="gradient-tabbar" style=""></div>
+    <div class="subheader">
+        <div class="" id="tabs">
+						<a {/if $model->tab_selector=="index"/} class="active" {//if/} href="{/ $base_url /}/recommend">所有推荐</a>
+						<a {/if $model->tab_selector=="normal"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/normal')">自主推荐</a>
+						<a {/if $model->tab_selector=="douban"/} class="active" {//if/} href="#" OnClick="Loginstate('{/$username/}','recommend/douban')">豆瓣推荐</a>
+						<a {/if $model->tab_selector=="mine"/} class="active" {//if/}  href="#" OnClick="Loginstate('{/$username/}','recommend/mine')">我的推荐</a>
+        </div>
+    </div>
+
+</div>
+<div class="span12">
+<div class="group">
+
+<div class="outer-space paragraphs-outer dig-index group">
+<div class="paragraphs group">
+
+<div class="row">
+    <div class="paragraph-item">
+        <div class="span2">
+            <div class="book-item-paragraph">
+                <div class="book-img">
+                    <a href=""><img src={/$reader->image_url/} /></a>
+                </div>
+                <div class="large-cover-button">
+                    <a class="ui-widget ui-corner-all"><span class="free">{/$reader->band/}级</span></a>
+                </div>
+                <h5><a href="">已推荐{/$model->totalNum/}本 <small>by {/$reader->name/}</small></a></h5>
+            </div>
+        </div>
+        <div class="span8">
+            <div class="box paragraph-content">
+      <span class="ribbon ribbon-blue ribbon-offset-left ribbon-offset-top ribbon-left">
+        <p class="ribbon-inner">自主推荐</p>
+        <span class="ribbon-before"></span>
+        <span class="ribbon-after"></span>
+      </span>
+                <h3><a >我来推荐一本书</a></h3>
+                <div class="paragraph-content">
+                    <p>********************************************************************************</p>
+                    <p>{/$reader->user_motto/}</p>
+                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        --by {/$reader->name/}
+                    </p>
+                    <p>********************************************************************************</p>
+                    <br>
+                    <form id="recommendBookForm"  method="post" action="{/ $base_url /}/recommend/normal">
+                        <p>
+                            <label for="book_name">
+                                <small>图书名称( * )</small>
+                            </label>
+                            <input id="book_name" type="text" aria-required="true" tabindex="1" size="22" value="" name="book_name" />
+                         </p>
+
+                        <p>
+                            <label for="isbn">
+                                <small>ISBN( * )</small>
+                            </label>
+                            <input id="isbn" type="text" aria-required="true" tabindex="1" size="22" value="" name="isbn" />
+
+                        </p>
+
+                        <p>
+                            <input style="display:none;" id="submit" class="ui-button ui-widget ui-corner-all like-paragraphs-ajax" type="submit" value=" &nbsp;&nbsp;推 &nbsp;&nbsp;荐 &nbsp;&nbsp;" tabindex="5" name="submit" />
+                            <input type="submit" class="btn btn-primary" OnClick="document.submitForm.submit();" value="推荐">&nbsp;</input>
+                        </p>
+
+                        <a style="display:none;" id= "checkBookUrl" href=""></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{/ include file="common/footer.html" /}
+{/if $confirmbooks/}
+{/ include file="recommend/confirm.html"  confirmbooks=$confirmbooks/}
+{//if/}
+</html>

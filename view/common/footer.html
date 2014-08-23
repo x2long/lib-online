@@ -1,0 +1,79 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="slogon-footer">
+                    <p> “每个时代都有自己的盲点。摆脱我们自己这个时代盲点的最好方法，是去读读过去时代的书，看看他们当时的盲点。 <small>– C.S. Lewis</small> ”</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12 footer">
+                <ul class="footer-menu">
+                    <li><a href="http://mjkq.ebupt.net/" target="_blank">门禁考勤查询</a></li>
+                    <li class="splitter"> • </li>
+                    <li><a href="http://meetingroom.ebupt.net/" target="_blank">会议室使用情况查询</a></li>
+                    <li class="splitter"> • </li>
+                    <li><a href="http://staff.ebupt.net/" target="_blank">东信北邮员工内部网</a></li>
+                    <li class="splitter"> • </li>
+                    <li><a href="http://ebupt.com" target="_blank">东信北邮门户</a></li>
+                    <li class="splitter"> • </li>
+                    <li><a href="http://book.douban.com/" target="_blank">豆瓣读书</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="ui-layout-south">
+    <div id="copyright;"
+         style="padding-bottom: 4px    ;
+                 text-align     : center;
+                 color           : #555555;
+                 font-family: Tahoma,微软雅黑,宋体;
+                 font-size: 12px;
+                 margin: 0;" >Copyright&copy;2013东信北邮信息技术有限公司</div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getJSON("{/ $base_url /}/site/getHello", function(result){
+                $("#hello").append(result);
+            });
+        });
+    </script>
+
+		<SCRIPT type="text/javascript">
+				$(document).ready(function () {
+						$.getJSON("{/$base_url/}/site/getNotices", function(result){
+							$.each(result, function(i, field){
+								$("#showNotice").append(field + " ");
+							});
+						});
+				});
+		</SCRIPT>
+
+    <SCRIPT type="text/javascript">
+        function Loginstate(username,url){      //username
+            if(username=="Guest"){
+                var settings={
+                    title:"温馨提示",
+                    width:window.screen.availWidth*0.3+"px",
+                    dom:"<p>对不起，您还没有登录，请您登录。</p><p>如果有问题，请联系管理员(houyihan@ebupt.com)！</p>",  //要在弹出层上显示的消息
+                    clickEvent:function(){
+                        //do something              此处是给确定按钮绑定方法
+                        closeBlockUINoFresh();
+                        window.location.href="{/$base_url/}/login";
+                    }};
+                $.msgBox(settings);
+            }else{
+                window.location.href="{/$base_url/}/"+url;
+            };
+           return false;
+        }
+    </SCRIPT>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({pauseTime: 10000,effect:'fade'});
+        });
+    </script>
+</div>
+</body>

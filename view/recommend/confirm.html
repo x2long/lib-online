@@ -1,0 +1,44 @@
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        //定义相关函数
+        (function($){
+            $.fn.msgBoxAd = function(options){
+                var defaults = {
+                    title:"推荐书籍确认",
+                    width:(window.screen.availWidth*0.28)+"px",
+                    dom:"<p>确认删除选中的记录?</p>",  //要在弹出层上显示的消息
+                    clickEvent:function(){
+                        //do something              此处是给确定按钮绑定方法
+                        closeBlockUINoFresh();
+                        window.location.href="{/$base_url/}/recommend/mine";
+                    }
+                };
+                var options = $.extend(defaults,options);
+                $.msgBox(options);
+            }; //floatAd
+        })(jQuery);
+        $(function(){
+            var s ="<p>您要推荐这本书？</p>";
+            s +="<form action=\"\" name=\"confirmBookForm\" method=\"post\">";
+            s +="<p style=\"text-align:left;font-family:宋体;font-size:14px;color:#3777bc;font-weight:bold\">&nbsp;&nbsp;书名&nbsp;：&nbsp;{/$confirmbooks.book_name/}</p>";
+            s +="<p style=\"text-align:left;font-family:宋体;font-size:14px;color:#3777bc;font-weight:bold\">&nbsp;&nbsp;作者&nbsp;：&nbsp;{/$confirmbooks.author/}</p>";
+            s +="<p style=\"text-align:left;font-family:宋体;font-size:14px;color:#3777bc;font-weight:bold\">&nbsp;&nbsp;isbn&nbsp;：&nbsp;{/$confirmbooks.isbn/}</p>";
+            s +="<input style=\"display: none;\" type=\"checkbox\" name=\"douban_url\" value=\"{/$confirmbooks.douban_url/}\"  checked=\"true\">";
+            s +="<input style=\"display: none;\" type=\"checkbox\" name=\"checked\" value=\"yes\"  checked=\"true\">";
+            s +="</form>";
+            //调用漂浮插件
+            $("body").msgBoxAd({
+                title:"消息确认",
+                dom:s,
+                clickEvent:function(){
+                    //do something              此处是给确定按钮绑定方法
+                    closeBlockUINoFresh();
+                    document.confirmBookForm.submit();
+                    //window.location.href="{/$base_url/}/recommend/mine";
+                    //alert("test");
+                }
+            });
+        });
+
+    });
+</script>

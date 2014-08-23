@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <title>Jquery遮罩层</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="msgbox.js"></script>
+<script language="javascript" type="text/javascript">
+   
+   function Showtest() {
+			 var wid=""+(window.screen.availWidth*0.3)+"px" ;
+			 var settings={
+       title:"添加用户", 
+       width:(window.screen.availWidth*0.3)+"px",                    //"300px",
+       dom:"<p>确认删除选中的记录?</p>",  //要在弹出层上显示的消息
+       clickEvent:function(){
+         //do something              此处是给确定按钮绑定方法
+         closeBlockUINoFresh();
+         //alert("Hellodreamdu!");
+         closeBlockUINoFresh();
+         window.location.href="{/$base_url/}/login";
+      }}
+      $.msgBox(settings);
+      };
+ </script>
+ <script language="javascript">
+		 function screenInfo(){
+				 var wid=""+(window.screen.availWidth*0.3)+"px" ;
+    var  s = "";
+   s += "\r\n网页可见区域宽："+ document.body.clientWidth;
+   s += "\r\n网页可见区域高："+ document.body.clientHeight;
+   s += "\r\n网页可见区域宽："+ document.body.offsetWidth  +" (包括边线的宽)";
+   s += "\r\n网页可见区域高："+ document.body.offsetHeight +" (包括边线的宽)";
+   s += "\r\n网页正文全文宽："+ document.body.scrollWidth;
+   s += "\r\n网页正文全文高："+ document.body.scrollHeight;
+   s += "\r\n网页被卷去的高："+ document.body.scrollTop;
+   s += "\r\n网页被卷去的左："+ document.body.scrollLeft;
+   s += "\r\n网页正文部分上："+ window.screenTop;
+   s += "\r\n网页正文部分左："+ window.screenLeft;
+   s += "\r\n屏幕分辨率的高："+ window.screen.height;
+   s += "\r\n屏幕分辨率的宽："+ window.screen.width;
+   s += "\r\n屏幕可用工作区高度："+ window.screen.availHeight;
+	 s += "\r\n屏幕可用工作区宽度："+ window.screen.availWidth;
+	 s += "\r\ntest:"+wid;
+   alert(s);
+}
+</script>
+ </head>
+ <body>
+  <p>
+   <input value="弹出遮罩层1" type="button" id="btnShow1" onclick="Showtest()" />
+   <input value="弹出遮罩层2" type="button" id="btnShow1" onclick="screenInfo()" />
+  </p>
+ </body>
+</html>

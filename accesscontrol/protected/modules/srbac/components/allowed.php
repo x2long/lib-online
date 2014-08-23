@@ -1,0 +1,30 @@
+<?php 
+ return array(
+	'srbac-AuthitemGetUsers',
+	'srbac-AuthitemAssign',
+	'srbac-AuthitemGetRoles',
+	'srbac-AuthitemGetTasks',
+	'srbac-AuthitemGetOpers',
+	'srbac-AuthitemShow',
+	'srbac-AuthitemCreate',
+	'srbac-AuthitemUpdate',
+	'srbac-AuthitemDelete',
+	'srbac-AuthitemConfirm',
+	'srbac-AuthitemList',
+	'srbac-AuthitemInstall',
+	'srbac-AuthitemManage',
+	'srbac-AuthitemAutocomplete',
+	'srbac-AuthitemAssignments',
+	'srbac-AuthitemShowAssignments',
+	'srbac-AuthitemScan',
+	'srbac-AuthitemAutoDeleteItems',
+	'srbac-AuthitemAutoCreateItems',
+	'srbac-AuthitemAuto',
+	'srbac-AuthitemGetCleverOpers',
+	'srbac-AuthitemFrontPage',
+	'srbac-AuthitemEditAllowed',
+	'srbac-AuthitemSaveAllowed',
+	'srbac-AuthitemClearObsolete',
+	'srbac-AuthitemDeleteObsolete'
+);
+?>

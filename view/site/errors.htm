@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<html>
+	<body>
+		<script language="javascript"> 
+		function back()
+		{ 
+		    history.go(-1);  
+		</script> 
+		<table width="500" border="0" cellpadding="3" cellspacing="1" bgcolor="#FF0000" align = center>
+			<tr> 
+				<td height="20" colspan="2">
+				    <div align="center"><strong><font color="#FFFFFF"><h2>错误报告</h2></font></strong></div>
+				</td>
+			</tr>
+			{/section name=error loop=$model/}
+				<tr bgcolor="#FFFFFF"> 
+					<td width="30%" height="20"><h2>错误信息</h2></td>
+					<td><h2>{/$model[error].0/}</h2></td>  
+				</tr>
+			{/sectionelse/}
+			<tr>
+				<td colspan = 4>无任何记录</td>
+			</tr>
+			{//section/}
+		</table>
+		<hr>
+		<form>
+		<center>
+		<form method="get">
+			<input type="button"  value="返回上一级" onclick="javascript:window.history.back();">
+		</form>
+		</center>
+		</form>
+	</body>
+</html>

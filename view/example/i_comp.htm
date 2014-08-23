@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/layout_iframe.css" rel="stylesheet" type="text/css" />
+<link href="/css/uniform.css" rel="stylesheet" type="text/css" /><!--表单美化-->
+<link href="/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" /><!--表单验证-->
+
+<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery.uniform.js"></script>
+<script type="text/javascript" src="/js/jquery.validationengine-cn.js"></script>
+<script type="text/javascript" src="/js/jquery.validationengine.js"></script>
+<SCRIPT type="text/javascript">
+$(document).ready(function () {
+
+	//表单美化
+	$(".uniform-style input, .uniform-style textarea, .uniform-style select, .uniform-style button").uniform();
+
+	//表单输入验证
+	$("#example-form").validationEngine();
+
+});
+
+//表格首列的全选&反选控制
+function listSelectAll(opt){
+	if (opt.attr("checked"))
+		opt.parents("table").find("td.check input").attr("checked",true);
+	else
+		opt.parents("table").find("td.check input").attr("checked",false);
+}
+
+function listToggleAll(opt){
+	opt.parents("table").find("td.check input").click();
+}
+</SCRIPT>
+<title>网页标题</title>
+<!--[if IE 6]>
+<script src="/js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('img,a.opt,.png_bg');
+</script>
+<![endif]-->
+</head>
+<body>
+
+<div class="main-unit">
+	<div class="header"><span>快捷面板</span></div>
+	<div class="unit-container">
+		<div class="hintmsg">
+			[说明]&nbsp;系统常用功能快捷面板，推荐用于系统登录后的进入页；右上角数字代表未处理的消息数
+		</div>
+		<ul class="dashboard">
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<div class="untreat"><div>3</div></div>
+				<a href="#"><img class="icon" src="/images/icons/01.png"></a>
+				<div class="title"><a href="#">待审批任务</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/02.png"></a>
+				<div class="title"><a href="#">终端管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/03.png"></a>
+				<div class="title"><a href="#">群组管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/04.png"></a>
+				<div class="title"><a href="#">地市管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/05.png"></a>
+				<div class="title"><a href="#">广告商管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/06.png"></a>
+				<div class="title"><a href="#">代理商管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/07.png"></a>
+				<div class="title"><a href="#">广告管理</a></div>
+			</li>
+			<li>
+				<a href="#" class="mask" title="待审批任务"></a>
+				<a href="#"><img class="icon" src="/images/icons/08.png"></a>
+				<div class="title"><a href="#">档期管理</a></div>
+			</li>
+		</ul><!--dashborad-->
+	</div>
+</div>
+
+<div class="main-unit">
+	<div class="header"><span>表格</span></div>
+	<div class="unit-container">
+		<div class="hintmsg">[说明]&nbsp;普通表格，未使用插件</div>
+		<div class="btn-container">
+			<a class="btn1">新建数据项</a>
+		</div>
+
+		<table id="example-table" class="table-complex table-imgbtn highlight">
+			<thead>
+			<tr>
+				<th class="check"><input type="checkbox" onclick="listToggleAll($(this));"/></th><th>NO.</th><th>状态</th><th>群组</th><th>广告内容</th><th>运行时间</th><th>描述</th><th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr class="odd">
+				<td class="check"><input type="checkbox"/></td><td>1</td><td class="nowrap"><img src="/images/icons/success.png"></td><td>嗯</td><td>床前明月光疑是地上霜</td><td>2010-03-02 11:30:20</td><td></td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="even">
+				<td class="check"><input type="checkbox"/></td><td>3</td><td><img src="/images/icons/pending.png"></div></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="odd">
+				<td class="check"><input type="checkbox"/></td><td>44</td><td><img src="/images/icons/stop.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="even">
+				<td class="check"><input type="checkbox"/></td><td>128</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="odd">
+				<td class="check"><input type="checkbox"/></td><td>64</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="even">
+				<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			<tr class="odd">
+				<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<th class="checkbox"></th><th class="width1">NO.</th><th>状态</th><th>群组</th><th>广告内容</th><th>运行时间</th><th>创建时间</th><th>操作</th>
+			</tr>
+			</tfoot>
+		</table>
+		<div class="normal_info"> 当前范围：1~7 / 共7条数据</div>
+		<div class="normal_paginate paging_full_numbers">
+			<span class="paginate_button"><a>第一页</a></span>
+			<span class="paginate_button"><a>上一页</a></span>
+			<span><span class="paginate_active">1</span><!--<span class="paginate_button"><a>2</a></span>--></span>
+			<span class="paginate_button"><a>下一页</a></span>
+			<span class="paginate_button"><a>最后一页</a></span>
+		</div><!--分页-->
+	</div>
+</div><!--end of main-unit-->
+
+<div class="main-unit">
+	<div class="header"><span>信息</span></div>
+	<div class="unit-container">
+		<h4>用户属性</h4>
+		<table class="table-2col">
+			<tr>
+				<th>电话：</th><td>13810000000</td>
+			</tr>
+			<tr>
+				<th>Email：</th><td>date@ebupt.com</td>
+			</tr>
+			<tr>
+				<th>描述：</th><td>整个辽阔的世界一倾而下</td>
+			</tr>
+			<tr>
+				<th>注册时间：</th><td>2010-10-31</td>
+			</tr>
+			<tr>
+				<th>电话：</th><td>13810000000</td>
+			</tr>
+			<tr>
+				<th>Email：</th><td>date@ebupt.com</td>
+			</tr>
+			<tr>
+				<th>描述：</th><td>同样是闭门造车的理论，同样没有实证作检验标准，为何数学与哲学的功能完全不同？我对这个问题的答案是因为其研究对象不同。说实话我不知道哲学的研究对象是什么（世间万物？），而数学的研究对象，无论其理论抽象到何种程度，应该还是数量，以及不同数量之间的关系，这就和物理学的研究对象非常相近。 </td>
+			</tr>
+			<tr>
+				<th>注册时间：</th><td>2010-10-31</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="main-unit">
+	<div class="header"><span>表单</span></div>
+	<div class="unit-container">
+		<div class="hintmsg">[说明]&nbsp;设置了输入验证插件jQuery Validation Engine及表单美化插件jQuery uniform后的表单及常见按钮。</div>
+		<form id="example-form" name="example-form">
+		<table class="table-2col uniform-style">
+			<tr>
+				<th>小输入框</th><td><input id="ipt1" class="ipt-s validate[required,minSize[3],maxSize[10]]"/><span class="required">*</span><span class="hint">3~10个字符</span></td>
+			</tr>
+			<tr>
+				<th>中输入框</th><td><input id="ipt2" class="ipt-m validate[required]"/><span class="required">*</span></td>
+			</tr>
+			<tr>
+				<th>大输入框</th><td><input id="ipt3" class="ipt-b"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr/></td><!--分隔线-->
+			</tr>
+			<tr>
+				<th>电子邮件</th><td><input id="ipt4" class="ipt-m validate[required,custom[email]]"/><span class="required">*</span></td>
+			</tr>
+			<tr>
+				<th>手机号码</th><td><input id="ipt5" class="ipt-m validate[required,custom[mobilenumber]]"/><span class="required">*</span></td>
+			</tr>
+			<tr>
+				<th>生日</th><td><input id="ipt6" class="ipt-m validate[custom[date],past[NOW]]"/><span class="hint">日期格式：YYYY-MM-DD</span>	</td>
+			</tr>
+			<tr>
+				<th>密码</th><td><input id="pwd1" type="password" class="ipt-m validate[required]"/></td>
+			</tr>
+			<tr>
+				<th>确认密码</th><td><input id="pwd2" type="password" class="ipt-m validate[required,equals[pwd1]]"/></td>
+			</tr>
+			<tr>
+				<th>上传</th><td><input type="file"/></td>
+			</tr>
+			<tr>
+				<th>下拉框</th><td><select id="select1" class="validate[required]"><option value="">--选择--</option><option>子菜单项</option><option>abc</option></select><span class="required">*</span></td>
+			</tr>
+			<tr>
+				<th>文本框</th><td><textarea></textarea></td>
+			</tr>
+			<tr>
+				<th>单选框</th><td><input type="radio" class="validate[required]" name="example-radio-group" id="radio1"/><label for="radio1">radio1</label><input type="radio" name="example-radio-group" id="radio2" class="validate[required]"/><label for="radio2">radio2</label><input type="radio" name="example-radio-group" id="radio3" class="validate[required]"/><label for="radio3">radio3</label><input type="radio" name="example-radio-group" id="radio4" class="validate[required]"/><label for="radio4">radio4</label></td>
+			</tr>
+			<tr>
+				<th>多选框</th><td><input type="checkbox" name="example-checkbox-group" id="checkbox1" class="validate[minCheckbox[1]]"/><label for="checkbox1">checkbox1</label><input type="checkbox" name="example-checkbox-group"id="checkbox2" class="validate[minCheckbox[1]]"/><label for="checkbox2">checkbox2</label><input type="checkbox" name="example-checkbox-group"id="checkbox3" class="validate[minCheckbox[1]]"/><label for="checkbox3">checkbox3</label><input type="checkbox" name="example-checkbox-group"id="checkbox4" class="validate[minCheckbox[1]]"/><label for="checkbox4">checkbox4</label></td>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+				<div class="btn-container">
+
+					<a class="btn-save">提交/保存/通过审批</a>
+					<a class="btn-del">删除</a>
+					<a class="btn-add">新建</a>
+					<a class="btn-cancel">取消/驳回</a>
+					<a class="btn-search">搜索</a>
+					<a class="btn-next">下一步</a>
+					<a class="btn-prev">上一步</a>
+					<a class="btn-export">导出</a>
+					<a class="btn-download">保存</a>
+					<a class="btn-play">播放</a>
+
+				</div>
+<!--
+				<div class="btn-container2">
+					<a class="btn1" href="#">确定</a>
+					<a class="btn2" href="#">取消</a>
+				</div>
+-->
+
+				</td>
+			</tr>
+		</table>
+		</form>
+
+	</div>
+</div>
+
+</body>
+</html>

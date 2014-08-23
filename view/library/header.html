@@ -1,0 +1,38 @@
+<head>
+    <meta property="wb:webmaster" content="7b0a8a7d93e0bc08" />
+    <link rel='shortcut icon' href='{/ $base_url /}/images/favicon.ico'/>
+    <title>EB图书馆</title>
+    <link type="text/css" href="{/ $base_url /}/css/common/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{/ $base_url /}/css/old/bootstrap.min.css">
+    <link rel="stylesheet" href="{/ $base_url /}/css/old/customize_bs.css">
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19482461-7']);
+        _gaq.push(['_setDomainName', 'ikandou.com']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+             <a class="brand" href="library"><img src="{/ $base_url /}/images/lib_logo.gif" width="100px" alt="" /></a>
+             <div class="nav-collapse">
+                 <ul class="nav">
+                     <li><a href="library">首&nbsp;页</a></li>
+                     <li><a href="#">&nbsp;</a></li>
+                 </ul>
+             </div>
+            <form class="navbar-search pull-left" action="/search/" method="get">
+                <input type="text" name="q" class="search-query span2" placeholder="书名/作者/ISBN ...">
+                <input style="display: none;" type="checkbox" name="models" value="ebook.book" id="id_models_0" checked="true">
+            </form>
+        </div>
+    </div>
+</div>

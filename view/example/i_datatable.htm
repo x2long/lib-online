@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/layout_iframe.css" rel="stylesheet" type="text/css" />
+<link href="/css/uniform.css" rel="stylesheet" type="text/css" /><!--表单美化-->
+<link href="/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" /><!--表单验证-->
+
+<title>东信北邮管理网站模板</title>
+<SCRIPT type="text/javascript" src="/js/jquery-1.4.4.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.dataTables.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.uniform.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.validationEngine-cn.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/js/jquery.validationEngine.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+$(document).ready(function () {
+
+	$('#example-table').dataTable( {
+		"oLanguage": {
+			"sLengthMenu": "每页显示数：  _MENU_",
+			"sZeroRecords": "没有符合条件的搜索结果",
+			"sInfo": " 当前范围：_START_~_END_ / 共_TOTAL_条数据",
+			"sInfoEmpty": "0条数据",
+			"sInfoFiltered": "(过滤自 _MAX_ 条数据)",
+			"sSearch": "搜索：",
+			"oPaginate": {
+				"sFirst":    "第一页",
+				"sPrevious": "上一页",
+				"sNext":     "下一页",
+				"sLast":     "最后一页"
+			}
+		},
+		"sPaginationType": "full_numbers"
+	} );
+
+});
+
+function listSelectAll(opt){
+	if (opt.attr("checked"))
+		opt.parents("table").find("td.check input").attr("checked",true);
+	else
+		opt.parents("table").find("td.check input").attr("checked",false);
+}
+
+function listToggleAll(opt){
+	opt.parents("table").find("td.check input").click();
+}
+</SCRIPT>
+<!--[if IE 6]>
+<script src="/js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('img,a.opt,.png_bg');
+</script>
+<![endif]-->
+</head>
+<body>
+
+<div class="main-unit">
+	<div class="header"><span>表格</span></div>
+	<div class="unit-container">
+	<div class="hintmsg">[说明]&nbsp;使用了datatable插件的表格；自带分页/即时搜索/排序功能；<br/>介于本插件会一次性载入全部数据，在数据量较大（上百条数据）的场合建议使用jqgrid插件</div>
+	<div class="table-wrapper">
+	<table id="example-table" class="table-complex table-imgbtn highlight">
+		<thead>
+		<tr>
+			<th class="check"><input type="checkbox" onclick="listToggleAll($(this));"/></th><th>NO.</th><th>状态</th><th>群组</th><th>广告内容</th><th>运行时间</th><th>描述</th><th>操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>1</td><td class="nowrap"><img src="/images/icons/success.png"></td><td>嗯</td><td>床前明月光疑是地上霜</td><td>2010-03-02 11:30:20</td><td></td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a><a class="opt-detail opt" title="查看详情">详情</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>3</td><td><img src="/images/icons/pending.png"></div></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>44</td><td><img src="/images/icons/stop.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>128</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>64</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="even">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+		<tr class="odd">
+			<td class="check"><input type="checkbox"/></td><td>123</td><td><img src="/images/icons/success.png"></td><td>嗯</td><td>test123</td><td>2010-03-02 11:30:20</td><td>balabalabalabala</td><td><a class="opt-edit opt" title="编辑">编辑</a><a class="opt-del opt" title="删除">删除</a></td>
+		</tr>
+
+		</tbody>
+		<tfoot>
+		<tr>
+			<th class="checkbox"></th><th class="width1">NO.</th><th>状态</th><th>群组</th><th>广告内容</th><th>运行时间</th><th>创建时间</th><th>操作</th>
+		</tr>
+		</tfoot>
+	</table>
+	</div><!--end of table-wrapper-->
+</div><!--end of main-unit-->
+
+
+</body>
+</html>
